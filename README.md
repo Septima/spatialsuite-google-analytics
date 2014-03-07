@@ -25,11 +25,12 @@ INSTALLATION
          <tool module="google-analytics" name="ga-plugin"/>
 
 3.b:  Add a cbinfo parameter with the ID of the Google Analytics account:
+```xml
     <!-- =================================== -->
     <!-- GOOGLE ANALYTICS                    -->
     <!-- =================================== -->   
     <param name="module.google-analytics.id">UA-XXXXXXX-XX</param>
-
+```
 
 Om Google Analytics  
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy>
+
+   <!-- 
+   ===============================================================
+   SpatialMap version 2.x, copyright Grontmij GIS&IT, 2012
+   ===============================================================
+   $Archive: /Products/CBKort2/development/2.9/standard_upgrade_01/wwwroot/WEB-INF/config/modules/standard/google-analytics/deploy.xml $ 
+   $Date: 21-11-12 15:34 $
+   $Revision: 11 $ 
+   $Author: Nsm $
+   =============================================================== 
+   -->
+   <version>2.9.1</version>
+</deploy>

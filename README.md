@@ -19,7 +19,8 @@ INSTALLATION
 
 1:    Install the module
 1.a:  Copy the standard module "google-analytics" to [cbinfo.config.dir]/modules/standard.
-1.b:  Write the following entry in [cbinfo.modules]: <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
+1.b:  Write the following entry in [cbinfo.modules]:
+	 <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
 
 2  :  Add tool to profile.
          <tool module="google-analytics" name="ga-plugin"/>

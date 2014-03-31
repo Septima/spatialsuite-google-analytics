@@ -7,16 +7,18 @@ Septima v/ Klavs P. Christensen. klavsATseptima.dk www.septima.dk
 
 Før installation
 
-I Google Analytics oprettes og konfigureres en konto. Informationer fra opsætningen af denne konto skal bruges i konfigurationen af modulet. Se bedenfor
+I Google Analytics oprettes og konfigureres en konto. Informationer fra opsætningen af denne konto skal bruges i konfigurationen af modulet. Se nedenfor
 
 --------------------
 INSTALLATION
 --------------------
 
-1:    Install the module
-1.a:  Copy the standard module "google-analytics" to [cbinfo.config.dir]/modules/standard.
-1.b:  Write the following entry in [cbinfo.modules]:
+1:    Install the module  
+1.a:  Copy the standard module "google-analytics" to [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.  
+1.b:  Write the following entry in [cbinfo.modules]:  
+```xml
 	 <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
+```
 
 2  :  Add tool to profile.
          <tool module="google-analytics" name="ga-plugin"/>
@@ -29,23 +31,30 @@ INSTALLATION
     <param name="module.google-analytics.id">UA-XXXXXXX-XX</param>
 ```
 
+--------------------
 Forberedelse af Google Anlytics
+--------------------
 
 Det tager noget tid at blive fortrolig med Google Analytics. Her gives en vejledning i hvordan Analytics skal konfigureres og en overordnet gennemgang af mulighederne for analyse.  
 
-Google Anlytics er struktureret i Konto -> Ejendomme -> Visninger  
+Google Analytics er struktureret i Konto -> Ejendomme -> Visninger  
+* En konto er oprettet og ejet af et Google-bruger-id.
+* Adgangen til kontoen kan deles med andre brugere.
 
-Opsætning:  
+#### Opsætning:  
 
-Opret en konto i analytics ( http://www.google.com/analytics/ )
+##### Konto  
+Opret en konto i Analytics ( http://www.google.com/analytics/ )
 * Hvis du IKKE er logget ind i Analytics så er der en knap på forsiden "Opret konto"
 * Hvis du ER logget skal du gå til administration-menuen.
-* Opret en konto. Navnet er valgfrit, men jeg anbefaler noget i stil med SpatialMap.[DINKOMMUNE]
+* Opret en konto. Navnet er valgfrit, men jeg anbefaler noget i stil med SpatialMap.[DINKOMMUNE] (feks: SpatialMap.Favrskov)  
 
+##### Ejendomme  
 Under kontoen oprettes to ejendomme, en intern og en ekstern
 * Giv ejendommene de navne som du bruger om dine sites, feks. WebGIS og Borgersite
-* Hver ejendom har et Sporings-id, UA-XXXXX-X, det er dette id, der skal skrives i cbinfo.xml for hhv det interne og eksterne site.
+* Hver ejendom har et Sporings-id, UA-XXXXX-X; Det er dette id, der skal skrives i cbinfo.xml for hhv. det interne og eksterne site.
 
+##### Visninger  
 Hver ejendom er blevet oprettet med en standard-visning
 * Omdøb denne visning til SITENAVN-Alle Profiler. (Feks.: WebGIS - Alle Profiler). Denne visning bliver bruget til at dataopsamle på tværs af alle profiler på dit site.
 * For hver profil som du ønsker at måle særskilt skal du oprette en visning. Jeg anbefaler at kalde visningen SITENAVN-PROFILNAVN (Feks. WebGIS - Byg). Konfigurer visningen således:
@@ -56,14 +65,7 @@ Hver ejendom er blevet oprettet med en standard-visning
  * Forskel på små og store bogstaver: Nej
  * Gem filter og visning
 
-Om Google Analytics  
-
-GA er struktureret i Konto -> Ejendomme -> Visninger  
-
-En konto er oprettet og ejet af et Google-bruger-id.
-* Adgangen til kontoen kan deles med andre brugere.
-
-Analyse
+#### Analyse
 
 Der logges ind i Google Analytics. Forsiden viser en træstruktur, Konti -> Ejendomme -> Visninger, over det man har adgang til.
 
@@ -77,12 +79,12 @@ Brugere på siden (Hvor mange brugere, hvorfra og hvornår)
 * Målgruppe -> Demografi -> Geografisk Område viser hvor brugere er lokaliseret
 * Målgruppe -> Teknologi -> Browser og OS giver oversigt over hvilke typer browsere, der anvendes. Der leveres statistik på skærmopløsninger, operativsystem og meget andet.
 
-Hændelser (Hvad laver brugerne)
+Hændelser (Hvad laver brugerne)  
 Der dataopsamles på hvilke temaer, der vælges, hvilke knapper, der trykkes på og zoomlevels i kortet
 * Realtid -> Hændelser. Viser hændelser indenfor de seneste tredive minutter. Anvendes til at finde ud af, hvad der sker lige nu.
 * Indhold -> Hændelser -> Oversigt. Nederst til højre klikkes på “Vis fuld rapport”. Nu vises en liste over hændelser.
 
-Hvis ikke Kategori for hændelse er valgt som primære dimension så vælg den.
-Som sekundær dimension vælges Hændelser -> Hændelsesetiket. Nu vises alle hændelser med information. Det kan eksempelvis ses hvor mange gange de enkelte temaer er blevet tændt.
+Hvis ikke Kategori for hændelse er valgt som primære dimension så vælg den.  
+Som sekundær dimension vælges Hændelser -> Hændelsesetiket. Nu vises alle hændelser med information. Det kan eksempelvis ses hvor mange gange de enkelte temaer er blevet tændt.  
 Lister i Google Analytics kan eksporteres til diverse formater, hvor regnearksformater er gode til efterfølgende filtrering, sortering og analyse.
 

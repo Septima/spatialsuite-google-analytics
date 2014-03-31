@@ -14,16 +14,18 @@ INSTALLATION
 --------------------
 
 1:    Download modulet https://github.com/Septima/spatialsuite-google-analytics/archive/1.0.zip    
-1.a:  Copy the standard module "google-analytics" to [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.  
-1.b:  Write the following entry in [cbinfo.modules]:  
+1.a:  Kopiér modulet "google-analytics" til [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.  
+1.b:  Skriv følgende i modules.xml:  
 ```xml
 	 <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
 ```
 
-2  :  Add tool to profile.
-         <tool module="google-analytics" name="ga-plugin"/>
+2  :  Inkludér toolet i profile.xml. (Evt i include-fil så det automatisk kommer med i alle profiler)  
+```xml
+<tool module="google-analytics" name="ga-plugin"/>
+```
 
-3.b:  Add a cbinfo parameter with the ID of the Google Analytics account:
+3.b:  Inkludér en cbinfo-parameter med id'et på korrekt ejendom:
 ```xml
     <!-- =================================== -->
     <!-- GOOGLE ANALYTICS                    -->

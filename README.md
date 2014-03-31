@@ -7,11 +7,7 @@ Septima v/ Klavs P. Christensen. klavsATseptima.dk www.septima.dk
 
 Før installation
 
-I Google Analytics oprettes en Web App, som svarer til Spatial Map-urlen, eks. kort.ishoej.dk. Se nedenfor.  
-
-Web Appens Egenskabs-id noteres og skal bruges i opsætningen af modulet.  
-
-Vigtigt: Den profil, der automatisk oprettes under den nye Web App skal omdøbes til “*ditcbkortsite* Alt”  
+I Google Analytics oprettes og konfigureres en konto. Informationer fra opsætningen af denne konto skal bruges i konfigurationen af modulet. Se bedenfor
 
 --------------------
 INSTALLATION
@@ -33,40 +29,60 @@ INSTALLATION
     <param name="module.google-analytics.id">UA-XXXXXXX-XX</param>
 ```
 
+Forberedelse af Google Anlytics
+
+Det tager noget tid at blive fortrolig med Google Analytics. Her gives en vejledning i hvordan Analytics skal konfigureres og en overordnet gennemgang af mulighederne for analyse.  
+
+Google Anlytics er struktureret i Konto -> Ejendomme -> Visninger  
+
+Opsætning:  
+
+Opret en konto i analytics ( http://www.google.com/analytics/ )
+* Hvis du IKKE er logget ind i Analytics så er der en knap på forsiden "Opret konto"
+* Hvis du ER logget skal du gå til administration-menuen.
+* Opret en konto. Navnet er valgfrit, men jeg anbefaler noget i stil med SpatialMap.[DINKOMMUNE]
+
+Under kontoen oprettes to ejendomme, en intern og en ekstern
+* Giv ejendommene de navne som du bruger om dine sites, feks. WebGIS og Borgersite
+* Hver ejendom har et Sporings-id, UA-XXXXX-X, det er dette id, der skal skrives i cbinfo.xml for hhv det interne og eksterne site.
+
+Hver ejendom er blevet oprettet med en standard-visning
+* Omdøb denne visning til SITENAVN-Alle Profiler. (Feks.: WebGIS - Alle Profiler). Denne visning bliver bruget til at dataopsamle på tværs af alle profiler på dit site.
+* For hver profil som du ønsker at måle særskilt skal du oprette en visning. Jeg anbefaler at kalde visningen SITENAVN-PROFILNAVN (Feks. WebGIS - Byg). Konfigurer visningen således:
+ * Opret filter med navn: profilid (feks byg)
+ * Filtertype: tilpasset->Inkludér
+ * Filterfelt: "Brugerdefineret"
+ * Filtreringsmønster: profilid (byg)
+ * Forskel på små og store bogstaver: Nej
+ * Gem filter og visning
+
 Om Google Analytics  
 
-Struktur  
+GA er struktureret i Konto -> Ejendomme -> Visninger  
 
-GA er struktureret i Konto -> Web Apps -> Profiler  
-
-En konto er oprettet og ejet af et Google-bruger-id. Adgangen til kontoen kan deles med andre brugere. Bruger har adgang til specifikke profiler. Administrator har adgang til alle profiler
-Kontoejer kan oprette Web Apps. Registrering af hændelser sker på Web App-niveau. Web Apps kaldes også Ejendom og Egenskab
-Under en Web App oprettes et antal profiler. Profiler anvendes til at filtrere i hvilke hændelser man ønsker at analysere. Som default oprettes en profil “All Web Site data”, som ikke filtrerer.
-
-Uhensigtsmæssighed ved GA: Hvis man ikke omdøber default-profilen for en Web App er det umuligt at skelne dem fra hinanden.  
-
-Administration af rettigheder foregår på profil-niveau og det er selvfølgelig vigtigt, at kunne skelne dem fra hinanden. Derfor; omdøb straks default-profilen til noget sigende når en Wep App er oprettet.
+En konto er oprettet og ejet af et Google-bruger-id.
+* Adgangen til kontoen kan deles med andre brugere.
 
 Analyse
 
-Der logges ind i Google Analytics. Forsiden viser en træstruktur, Konti -> Web Apps -> Profiler, over det man har adgang til.
-Vælg profilen “SpatialMapUrl Alle hændelser”.
+Der logges ind i Google Analytics. Forsiden viser en træstruktur, Konti -> Ejendomme -> Visninger, over det man har adgang til.
+
+Vælg en visning feks. “WebGIS - Alle Profiler”.
+
 Man kan nu navigere i forskellige visninger og det anbefales, at man gør sig fortrolig med den anvendte terminologi. Vær specielt opmærksom på det aktive dato-interval øverst til højre. Der vises kun hændelser for det aktive interval. 
 
-Analyse af hændelser
+Brugere på siden (Hvor mange brugere, hvorfra og hvornår)
+* Realtid - Oversigt
+* Målgruppe -> Oversigt Oversigt, som viser overordnede tal om antal sidevisninger og brugere. Fra denne oversigt kan der klikkes ned i forskellige aspekter af data.
+* Målgruppe -> Demografi -> Geografisk Område viser hvor brugere er lokaliseret
+* Målgruppe -> Teknologi -> Browser og OS giver oversigt over hvilke typer browsere, der anvendes. Der leveres statistik på skærmopløsninger, operativsystem og meget andet.
 
-I menuen til venstre er specielt to menupunkter interessante til analyse af hændelser:
-Standardrapporter -> Realtid -> Hændelser. Viser hændelser indenfor de seneste tredive minutter. Anvendes til at finde ud af, hvad der sker lige nu.
-Standardrapporter -> Indhold -> Hændelser -> Oversigt.
-Nederst til højre klikkes på “Vis fuld rapport”. Nu vises en liste over hændelser.
+Hændelser (Hvad laver brugerne)
+Der dataopsamles på hvilke temaer, der vælges, hvilke knapper, der trykkes på og zoomlevels i kortet
+* Realtid -> Hændelser. Viser hændelser indenfor de seneste tredive minutter. Anvendes til at finde ud af, hvad der sker lige nu.
+* Indhold -> Hændelser -> Oversigt. Nederst til højre klikkes på “Vis fuld rapport”. Nu vises en liste over hændelser.
+
 Hvis ikke Kategori for hændelse er valgt som primære dimension så vælg den.
 Som sekundær dimension vælges Hændelser -> Hændelsesetiket. Nu vises alle hændelser med information. Det kan eksempelvis ses hvor mange gange de enkelte temaer er blevet tændt.
 Lister i Google Analytics kan eksporteres til diverse formater, hvor regnearksformater er gode til efterfølgende filtrering, sortering og analyse.
-
-Analyse af sidevisninger og brugere
-
-I menuen til venstre er følgende menupunkter specielt interessante:
-Standardrapport -> Målgruppe -> Oversigt, som viser overordnede tal om antal sidevisninger og brugere. Fra denne oversigt kan der klikkes ned i forskellige aspekter af data.
-Standardrapport -> Målgruppe -> Demografi -> Geografisk Område viser hvor brugere er lokaliseret
-Standardrapport -> Målgruppe -> Teknologi -> Browser og OS giver oversigt over hvilke typer browsere, der anvendes. Der leveres statistik på skærmopløsninger, operativsystem og meget andet.
 

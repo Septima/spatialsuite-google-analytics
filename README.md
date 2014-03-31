@@ -13,7 +13,7 @@ I Google Analytics oprettes og konfigureres en konto. Informationer fra opsætnin
 INSTALLATION
 --------------------
 
-1:    Install the module  
+1:    Download modulet https://github.com/Septima/spatialsuite-google-analytics/archive/1.0.zip    
 1.a:  Copy the standard module "google-analytics" to [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.  
 1.b:  Write the following entry in [cbinfo.modules]:  
 ```xml

@@ -29,6 +29,20 @@
          	_gaq.push(['_trackEvent', 'Theme', (theme.visible ? 'Show' : 'Hide'), theme.name]);
         });
         
+        cbKort.events.addListener ('S4',function (event, s4Event) {
+        	if (s4Event.type === 's4Hit' || s4Event.type === 's4DoPrint' || s4Event.type === 's4DoInfo'){
+	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.result.searcher.CLASS_NAME]);
+        	}else if (s4Event.type === 'themeHit'){
+	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.theme.theme.name]);
+        	}else if (s4Event.type === 'favoriteHit'){
+	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.favorite.displayname]);
+        	}else if (s4Event.type === 'profileHit'){
+	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.profile.name]);
+        	}else if (s4Event.type === 'workspaceHit'){
+	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.workspace.name + ' (' + s4Event.workspace.owner + ')']);
+        	}
+        });
+        
         //theme.js:137
         cbKort.events.addListener ('THEME_LOAD',function (event, theme) {
         	if (theme.event == "loadend"){

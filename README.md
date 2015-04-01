@@ -17,7 +17,7 @@ INSTALLATION
 1.a:  Kopiér modulet "google-analytics" til [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.
 1.b:  Skriv følgende i modules.xml:
 ```xml
-	 <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
+<module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
 ```
 
 2  :  Inkludér toolet i profile.xml. (Evt i include-fil så det automatisk kommer med i alle profiler)

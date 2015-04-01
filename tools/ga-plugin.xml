@@ -2,67 +2,68 @@
 <tool type="plugin">
 
     <src><![CDATA[
-       	_gaq.push(['_setVar', cbKort.getProfile()]);
-       	
-       	_gaq.push(['_trackEvent', 'Profile', 'Load', cbKort.getProfile()]);
-       	
+       	ga('set', cbKort.getProfile());
+        ga('send', 'event', 'Profile', 'Load', cbKort.getProfile());
+
        	//2.6.3
     	jQuery('.textbutton, .imagebutton, .menuItem').click(function(){
-	    	var id =  jQuery(this).attr("id");
-        	_gaq.push(['_trackEvent', 'Button', 'Clicked', id]);
+	    	var id =  jQuery(this).attr('id');
+            ga('send', 'event', 'Button', 'Clicked', id);
 	    });
 	    
 	    //2.6.3+
         cbKort.events.addListener ('BUTTON_CLICKED', function (event, button) {
-        	if (button.type == "menu"){
-	        	_gaq.push(['_trackEvent', 'Menuitem', 'Clicked', button.name]);
+        	if (button.type === 'menu'){
+                ga('send', 'event', 'Menuitem', 'Clicked', button.name);
         	} else {
-	        	_gaq.push(['_trackEvent', 'Button', 'Clicked', button.name]);
+                ga('send', 'event', 'Button', 'Clicked', button.name);
         	}
         });
 	    
         cbKort.events.addListener ('MAP_CHANGED', function (event, map) {
-        	_gaq.push(['_trackEvent', 'Map', 'Resolution', "" + map.resolution]);
+            ga('send', 'event', 'Map', 'Resolution', '' + map.resolution);
         });
         
         cbKort.events.addListener ('THEME_CHANGED',function (event, theme) {
-         	_gaq.push(['_trackEvent', 'Theme', (theme.visible ? 'Show' : 'Hide'), theme.name]);
+            ga('send', 'event', 'Theme', (theme.visible ? 'Show' : 'Hide'), theme.name);
         });
         
         cbKort.events.addListener ('S4',function (event, s4Event) {
+            var val = null;
         	if (s4Event.type === 's4Hit' || s4Event.type === 's4DoPrint' || s4Event.type === 's4DoInfo'){
-	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.result.searcher.CLASS_NAME]);
+	         	val = s4Event.result.searcher.CLASS_NAME;
         	}else if (s4Event.type === 'themeHit'){
-	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.theme.theme.name]);
+	         	val = s4Event.theme.theme.name;
         	}else if (s4Event.type === 'favoriteHit'){
-	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.favorite.displayname]);
+	         	val = s4Event.favorite.displayname;
         	}else if (s4Event.type === 'profileHit'){
-	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.profile.name]);
+	         	val = s4Event.profile.name;
         	}else if (s4Event.type === 'workspaceHit'){
-	         	_gaq.push(['_trackEvent', 'S4', s4Event.type, s4Event.workspace.name + ' (' + s4Event.workspace.owner + ')']);
+	         	val = s4Event.workspace.name + ' (' + s4Event.workspace.owner + ')';
         	}
+        	if (val !== null) {
+                ga('send', 'event', 'S4', s4Event.type, val);
+            }
         });
         
         //theme.js:137
         cbKort.events.addListener ('THEME_LOAD',function (event, theme) {
-        	if (theme.event == "loadend"){
-				_gaq.push(['_trackTiming', 'Theme_load', theme.id, theme.time, theme.id, 100]);
-        	}else if (theme.event == "loadwarning"){
-	         	_gaq.push(['_trackEvent', 'Theme', 'Warning', theme.id]);
-        	}else if (theme.event == "loadfail"){
-	         	_gaq.push(['_trackEvent', 'Theme', 'Fail', theme.id]);
+        	if (theme.event === 'loadend'){
+                ga('send', 'event', 'Theme_load', theme.id, theme.time, theme.id, 10);
+        	}else if (theme.event === 'loadwarning'){
+                ga('send', 'event', 'Theme', 'Warning', theme.id);
+        	}else if (theme.event === 'loadfail'){
+                ga('send', 'event', 'Theme', 'Fail', theme.id);
         	}
         });
     ]]></src>
     <jssrc><![CDATA[
     	//Initialize analytics
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '[module.google-analytics.id]']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', '[module.google-analytics.id]', 'auto', );
+        ga('send', 'pageview');
     ]]></jssrc>
 </tool>    

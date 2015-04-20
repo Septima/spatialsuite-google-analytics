@@ -5,6 +5,12 @@
        	ga('set', cbKort.getProfile());
         ga('send', 'event', 'Profile', 'Load', cbKort.getProfile());
 
+        if ('[module.google-analytics.storeprincipal]' === 'true' && typeof getPrincipal !== 'undefined') {
+            var p = getPrincipal();
+            ga('send', 'event', 'User', 'Name', p.name + ' ('+p.id+')');
+            ga('send', 'event', 'User', 'Anonymous', p.isanonymous);
+        }
+
        	//2.6.3
     	jQuery('.textbutton, .imagebutton, .menuItem').click(function(){
 	    	var id =  jQuery(this).attr('id');

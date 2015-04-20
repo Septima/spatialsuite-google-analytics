@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
+
+    <param name="module.google-analytics.storeprincipal" ignore="IsDefined('module.google-analytics.storeprincipal')">true</param>
+
 </deploy>

@@ -25,12 +25,18 @@ INSTALLATION
 <tool module="google-analytics" name="ga-plugin"/>
 ```
 
-3.b:  Inkludér en cbinfo-parameter med id'et på korrekt ejendom:
+3  :  Inkludér cbinfo-parametre
+
+3.a:  ID'et på korrekt ejendom:
 ```xml
-    <!-- =================================== -->
-    <!-- GOOGLE ANALYTICS                    -->
-    <!-- =================================== -->   
-    <param name="module.google-analytics.id">UA-XXXXXXX-XX</param>
+<!-- =================================== -->
+<!-- GOOGLE ANALYTICS                    -->
+<!-- =================================== -->
+<param name="module.google-analytics.id">UA-XXXXXXX-XX</param>
+```
+3.b:  Skal oplysninger om brugeren gemmes?:
+```xml
+<param name="module.google-analytics.storeprincipal">true</param>
 ```
 
 --------------------

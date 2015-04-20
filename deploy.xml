@@ -2,6 +2,6 @@
 <deploy>
     <version>2.0.1</version>
 
-    <param name="module.google-analytics.storeprincipal" ignore="IsDefined('module.google-analytics.storeprincipal')">true</param>
+    <param name="module.google-analytics.storeprincipal" ignore="IsDefined('module.google-analytics.storeprincipal')">false</param>
 
 </deploy>

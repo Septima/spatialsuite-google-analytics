@@ -79,18 +79,18 @@ Der logges ind i Google Analytics. Forsiden viser en træstruktur, Konti -> Ejen
 
 Vælg en visning feks. "WebGIS - Alle Profiler".
 
-Man kan nu navigere i forskellige visninger og det anbefales, at man gør sig fortrolig med den anvendte terminologi. Vær specielt opmærksom på det aktive dato-interval øverst til højre. Der vises kun håndelser for det aktive interval.
+Man kan nu navigere i forskellige visninger og det anbefales, at man gør sig fortrolig med den anvendte terminologi. Vær specielt opmærksom på det aktive dato-interval øverst til højre. Der vises kun data for det aktive interval.
 
-Brugere på siden (Hvor mange brugere, hvorfra og hvornår)
+__Brugere på siden__ (Hvor mange brugere, hvorfra og hvornår)
 * Realtid - Oversigt
 * Målgruppe -> Oversigt Oversigt, som viser overordnede tal om antal sidevisninger og brugere. Fra denne oversigt kan der klikkes ned i forskellige aspekter af data.
 * Målgruppe -> Demografi -> Geografisk Område viser hvor brugere er lokaliseret
 * Målgruppe -> Teknologi -> Browser og OS giver oversigt over hvilke typer browsere, der anvendes. Der leveres statistik på skærmopløsninger, operativsystem og meget andet.
 
-Håndelser (Hvad laver brugerne)
+__Hændelser__ (Hvad laver brugerne)
 Der dataopsamles på hvilke temaer, der vælges, hvilke knapper, der trykkes på og zoomlevels i kortet
-* Realtid -> Hændelser. Viser håndelser indenfor de seneste tredive minutter. Anvendes til at finde ud af, hvad der sker lige nu.
-* Indhold -> Hændelser -> Oversigt. Nederst til højre klikkes på "Vis fuld rapport". Nu vises en liste over hændelser.
+* _Realtid_ -> Hændelser. Viser hændelser indenfor de seneste tredive minutter. Anvendes til at finde ud af, hvad der sker lige nu.
+* _Indhold_ -> _Hændelser_ -> Oversigt. Nederst til højre klikkes på "Vis fuld rapport". Nu vises en liste over hændelser.
 
 Hvis ikke Kategori for hændelse er valgt som primære dimension så vælg den.
 Som sekundær dimension vælges Hændelser -> Hændelsesetiket. Nu vises alle hændelser med information. Det kan eksempelvis ses hvor mange gange de enkelte temaer er blevet tændt.

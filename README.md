@@ -3,7 +3,8 @@ spatialsuite-google-analytics
 
 Google Analytics modul
 
-Septima v/ Klavs P. Christensen. klavsATseptima.dk www.septima.dk
+Septima v/ Klavs P. Christensen. klavsATseptima.dk  
+www.septima.dk
 
 Før installation
 
@@ -13,8 +14,8 @@ I Google Analytics oprettes og konfigureres en konto. Informationer fra opsætni
 INSTALLATION
 --------------------
 
-1:    Download modulet https://github.com/Septima/spatialsuite-google-analytics/archive/2.0.1.zip
-1.a:  Kopiér modulet "google-analytics" til [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.
+1:    Download modulet https://github.com/Septima/spatialsuite-google-analytics/archive/2.0.1.zip  
+1.a:  Kopiér modulet "google-analytics" til [cbinfo.config.dir]/modules/thirdparty/septima/google-analytics.  
 1.b:  Skriv følgende i modules.xml:
 ```xml
 <module name="google-analytics" dir="thirdparty/septima/google-analytics"/>.
@@ -37,6 +38,11 @@ INSTALLATION
 3.b:  Skal oplysninger om brugeren gemmes?:
 ```xml
 <param name="module.google-analytics.storeprincipal">true</param>
+```
+
+3.b:  Undlad at bruge cookies: (Brugeren trackes ikke, dvs der vil blive registreret ny bruger hvergang sitet reloades. Alle events er korrekte, men de vil ikke kunne henføres til en brugers opførsel på sitet)  
+```xml
+<param name="module.google-analytics.no-cookie">true</param>
 ```
 
 --------------------

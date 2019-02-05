@@ -11,14 +11,9 @@
             ga('send', 'event', 'User', 'Anonymous', p.isanonymous);
         }
 
-       	//2.6.3
-    	jQuery('.textbutton, .imagebutton, .menuItem').click(function(){
-	    	var id =  jQuery(this).attr('id');
-            ga('send', 'event', 'Button', 'Clicked', id);
-	    });
-	    
-	    //2.6.3+
-        cbKort.events.addListener ('BUTTON_CLICKED', function (event, button) {
+        
+        ga_plugin_addListener ('BUTTON_CLICKED', function (event, button) {
+        //cbKort.events.addListener ('BUTTON_CLICKED', function (event, button) {
         	if (button.type === 'menu'){
                 ga('send', 'event', 'Menuitem', 'Clicked', button.name);
         	} else {
@@ -26,15 +21,15 @@
         	}
         });
 	    
-        cbKort.events.addListener ('MAP_CHANGED', function (event, map) {
+        ga_plugin_addListener ('MAP_CHANGED', function (event, map) {
             ga('send', 'event', 'Map', 'Resolution', '' + map.resolution);
         });
         
-        cbKort.events.addListener ('THEME_CHANGED',function (event, theme) {
+        ga_plugin_addListener ('THEME_CHANGED',function (event, theme) {
             ga('send', 'event', 'Theme', (theme.visible ? 'Show' : 'Hide'), theme.name);
         });
         
-        cbKort.events.addListener ('S4',function (event, s4Event) {
+        ga_plugin_addListener ('S4',function (event, s4Event) {
             var val = null;
         	if (s4Event.type === 's4Hit' || s4Event.type === 's4DoPrint' || s4Event.type === 's4DoInfo'){
 	         	val = s4Event.result.searcher.CLASS_NAME;
@@ -53,7 +48,7 @@
         });
         
         //theme.js:137
-        cbKort.events.addListener ('THEME_LOAD',function (event, theme) {
+        ga_plugin_addListener ('THEME_LOAD',function (event, theme) {
         	if (theme.event === 'loadend'){
                 ga('send', 'event', 'Theme_load', theme.id, theme.time, theme.id, 10);
         	}else if (theme.event === 'loadwarning'){
@@ -64,12 +59,29 @@
         });
     ]]></src>
     <jssrc><![CDATA[
+        function ga_plugin_addListener( event, listener ){
+            if (typeof spm !== 'undefined' && typeof spm.getEvents !== 'undefined'){
+                spm.getEvents().addListener( event, listener );
+            } else {
+                cbKort.events.addListener ( event, listener );       
+            }
+        }
+        
     	//Initialize analytics
+    	var a;
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', '[module.google-analytics.id]', 'auto');
+
+        //https://developers.google.com/analytics/devguides/collection/analyticsjs/cookies-user-id#disableCookies
+        [if: isDefinedAndTrue("module.google-analytics.no-cookie") ]
+            ga('create', '[module.google-analytics.id]', {'storage': 'none'});
+        [endif]
+        [if: Not isDefinedAndTrue("module.google-analytics.no-cookie") ]
+            ga('create', '[module.google-analytics.id]', 'auto');
+        [endif]
         ga('send', 'pageview');
+
     ]]></jssrc>
 </tool>    
